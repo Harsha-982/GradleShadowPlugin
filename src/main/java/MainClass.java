@@ -21,15 +21,16 @@ public class MainClass {
         WebAppContext context=new WebAppContext();
         context.setContextPath("/");
         URL url=MainClass.class.getClassLoader().getResource("META-INF/resources");
+
         context.setResourceBase(url.toURI().toString());
-        server.setHandler(context);
+
 
         Configuration.ClassList classList=new Configuration.ClassList();
-        Configuration.ClassList classList1 =classList.setServerDefault(server);
+        Configuration.ClassList classList1 = classList.setServerDefault(server);
 
         classList1.addBefore("org.eclipse.jetty.webapp.WebXmlConfiguration",
                 "org.eclipse.jetty.annotations.AnnotationConfiguration");
-
+        server.setHandler(context);
         System.out.println("Main Class");
 
         server.start();

@@ -1,20 +1,19 @@
-/*buildscript{
-    repositories {
-         mavenCentral()
-    }
-    dependencies {
-        classpath 'com.github.jengelman.gradle.plugins:shadow:5.1.0'
-    }
-}
-apply plugin: 'com.github.johnrengelman.shadow'
-*/
+//buildscript{
+//    repositories {
+//         mavenCentral()
+//    }
+//    dependencies {
+//        classpath 'com.github.jengelman.gradle.plugins:shadow:5.1.0'
+//    }
+//}
+
+
 plugins {
     id 'java'
     id 'application'
     id 'com.github.johnrengelman.shadow' version '5.1.0'
-
 }
-
+//apply plugin: 'com.github.johnrengelman.shadow'
 
 mainClassName = "MainClass"
 
@@ -30,7 +29,7 @@ task copyfiles(type : Copy){
 }
 shadowJar{
     manifest{
-        attributes 'Main-Class' :mainClassName
+        attributes "Main-Class" :mainClassName
     }
 }
 dependencies {
