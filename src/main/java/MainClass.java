@@ -1,8 +1,8 @@
 
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.servlet.ServletHandler;
-import org.eclipse.jetty.webapp.Configuration;
+import org.eclipse.jetty.webapp.Configuration.ClassList;
 import org.eclipse.jetty.webapp.WebAppContext;
+
 
 import java.net.URL;
 
@@ -17,23 +17,24 @@ public class MainClass {
         server.setHandler(servletHandler);
 
         */
-
-        WebAppContext context=new WebAppContext();
+        WebAppContext  context=new WebAppContext();
         context.setContextPath("/");
-        URL url=MainClass.class.getClassLoader().getResource("META-INF/resources");
+        URL webDir =
+                MainClass.class.getClassLoader().getResource("META-INF/resources");
+        context.setResourceBase(webDir.toURI().toString());
 
-        context.setResourceBase(url.toURI().toString());
 
+        context.setAttribute("org.eclipse.jetty.server.webapp.ContainerIncludeJarPattern",".*/[^/]*jstl.*\\.jar$");
 
-        Configuration.ClassList classList=new Configuration.ClassList();
-        Configuration.ClassList classList1 = classList.setServerDefault(server);
+        ClassList classlist =ClassList.setServerDefault(server);
+        classlist.addAfter("org.eclipse.jetty.webapp.FragmentConfiguration", "org.eclipse.jetty.plus.webapp.EnvConfiguration", "org.eclipse.jetty.plus.webapp.PlusConfiguration");
 
-        classList1.addBefore("org.eclipse.jetty.webapp.WebXmlConfiguration",
-                "org.eclipse.jetty.annotations.AnnotationConfiguration");
+        classlist.addBefore("org.eclipse.jetty.webapp.JettyWebXmlConfiguration", "org.eclipse.jetty.annotations.AnnotationConfiguration");
         server.setHandler(context);
-        System.out.println("Main Class");
 
+        System.out.println("Server Started ! ");
         server.start();
         server.join();
+
     }
 }
