@@ -7,6 +7,6 @@ import java.io.PrintWriter;
 public class HelloWorld extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter out=response.getWriter();
-        out.println("Hi welcome to our page ");
+        out.println("Hi viewers");
     }
 }
