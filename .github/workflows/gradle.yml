@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: HelloWorld
-      run: echo "helloWorld 
+      run: echo "helloWorld"
       
   callingWorkflows:
     uses : Harsha-982/ResumableUploads/.github/workflows/resuable.yml@main
