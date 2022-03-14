@@ -1,0 +1,19 @@
+
+name: Java CI with Gradle
+
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: HelloWorld
+      run: echo "helloWorld 
+      
+  callingWorkflows:
+    uses : Harsha-982/ResumableUploads/.github/workflows/resuable.yml@main
+    with:
+      gradle-version: 7.3.2
+  
