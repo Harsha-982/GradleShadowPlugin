@@ -15,5 +15,5 @@ jobs:
   callingWorkflows:
     uses : Harsha-982/ResumableUploads/.github/workflows/resuable.yml@main
     with:
-      gradle-version: 7.3.2
+      gradle-version: '7.3.2'
   
